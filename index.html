@@ -2,295 +2,22 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>EDW Cred - Soluções Financeiras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDW Cred - Soluções Financeiras</title>
     
-    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon">
+    
+    <link rel="stylesheet" href="css/style.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* Identidade Visual EDW Cred */
-            --primary: #111111;       /* Preto */
-            --secondary: #333333;     /* Cinza Escuro */
-            --accent: #666666;        /* Cinza Médio */
-            --light: #f4f4f4;         /* Fundo Claro */
-            --white: #ffffff;
-            --green: #2e7d32;         /* Verde Dinheiro */
-            --border: #e0e0e0;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            color: var(--secondary);
-            line-height: 1.6;
-            background: var(--white);
-            padding-top: 90px; /* Espaço para o header fixo */
-        }
-        
-        /* --- HEADER & NAV --- */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            height: 90px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            letter-spacing: -1px;
-            z-index: 1001;
-        }
-        .logo img { height: 50px; margin-right: 12px; }
-        .logo span { font-weight: 300; color: var(--accent); margin-left: 5px; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; }
-        
-        /* Menu Desktop */
-        .nav-menu { display: flex; list-style: none; gap: 35px; }
-        .nav-link {
-            text-decoration: none; color: var(--secondary); font-weight: 500; font-size: 16px;
-            cursor: pointer; transition: 0.3s; position: relative; padding-bottom: 5px;
-        }
-        .nav-link:hover, .nav-link.active { color: var(--primary); font-weight: 700; }
-        .nav-link.active::after {
-            content: ''; position: absolute; width: 100%; height: 3px;
-            bottom: 0; left: 0; background-color: var(--primary);
-        }
-        
-        /* Botão Mobile (Hambúrguer) - Inicialmente oculto */
-        .mobile-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); z-index: 1001; }
-
-        .btn {
-            padding: 14px 30px; background-color: var(--primary); color: var(--white);
-            border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s;
-            border: 1px solid var(--primary); cursor: pointer; display: inline-flex;
-            align-items: center; gap: 10px; font-size: 1rem; justify-content: center; text-align: center;
-        }
-        .btn:hover { background-color: #333; transform: translateY(-2px); }
-        .btn-outline { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
-        .btn-outline:hover { background: var(--primary); color: var(--white); }
-        
-        .header-btn { margin-left: 20px; }
-
-        /* --- LAYOUT GERAL --- */
-        section { padding: 80px 0; border-bottom: 1px solid #f0f0f0; }
-        .hidden { display: none !important; }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; font-weight: 800; line-height: 1.2; }
-        .section-title p { max-width: 700px; margin: 0 auto; color: var(--accent); font-size: 1.1rem; }
-
-        /* --- HERO SECTION --- */
-        .hero { background: linear-gradient(135deg, #ffffff 0%, #f0f2f5 100%); padding: 80px 0; overflow: hidden; }
-        .hero-content { display: flex; align-items: center; gap: 60px; }
-        .hero-text { flex: 1; }
-        .hero-text h1 { font-size: 3.2rem; color: var(--primary); line-height: 1.1; margin-bottom: 25px; font-weight: 800; }
-        .hero-text p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.8; max-width: 500px; }
-        .hero-image { flex: 1; text-align: center; position: relative; }
-        .hero-image img { max-width: 100%; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); transform: perspective(1000px) rotateY(-5deg); transition: 0.5s; }
-        .hero-image img:hover { transform: perspective(1000px) rotateY(0deg); }
-
-        /* --- GRIDS (Cards) --- */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .feature-card {
-            background: var(--white); padding: 40px 30px; border-radius: 12px;
-            text-align: center; border: 1px solid #eee; transition: 0.3s;
-            display: flex; flex-direction: column; justify-content: space-between; height: 100%;
-        }
-        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--primary); }
-        .feature-icon { font-size: 3rem; color: var(--primary); margin-bottom: 25px; }
-        .feature-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
-
-        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
-        .step-card { text-align: center; padding: 30px 20px; background: #fff; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: relative; }
-        .step-num {
-            width: 50px; height: 50px; background: var(--primary); color: #fff;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-weight: bold; font-size: 1.2rem;
-        }
-
-        /* --- SIMULADOR --- */
-        .simulator-wrapper { background: var(--white); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); display: flex; overflow: hidden; border: 1px solid #eee; max-width: 1100px; margin: 0 auto; }
-        .sim-left { flex: 1.5; padding: 50px; }
-        .sim-right {
-            flex: 1; background: var(--primary); color: var(--white);
-            padding: 50px; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; position: relative;
-        }
-        .sim-right::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+');
-        }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--primary); font-size: 1rem; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 15px; border: 2px solid #eee;
-            border-radius: 8px; background: #fafafa; font-size: 16px; transition: 0.3s;
-        }
-        
-        .result-details { background: #f8f9fa; border-left: 5px solid var(--primary); padding: 20px; margin-top: 25px; display: none; }
-        .warning-note {
-            background: #fff8e1; color: #f57c00; padding: 15px;
-            border-radius: 8px; font-size: 0.9rem; margin-top: 25px;
-            text-align: center; border: 1px solid #ffe0b2; font-weight: 500;
-        }
-
-        /* --- CARROSSEL --- */
-        .carousel-container { position: relative; max-width: 800px; width: 100%; margin: 0 auto; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
-        .carousel-slide { display: none; }
-        .carousel-slide.active { display: block; animation: fadeEffect 1s; }
-        @keyframes fadeEffect { from {opacity: 0.4} to {opacity: 1} }
-        .carousel-slide img { width: 100%; display: block; }
-
-        /* --- INFO GRID --- */
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .info-list ul { list-style: none; margin-top: 20px; }
-        .info-list li { margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: flex-start; }
-        .info-list li i { color: var(--green); margin-right: 15px; font-size: 1.2rem; margin-top: 5px; flex-shrink: 0; }
-        
-        /* --- PARCEIROS --- */
-        .partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 40px; align-items: center; justify-items: center; margin-top: 40px; }
-        .partners-grid img { max-width: 100%; width: 140px; filter: grayscale(100%); opacity: 0.6; transition: 0.3s; }
-        .partners-grid img:hover { filter: grayscale(0); opacity: 1; transform: scale(1.1); }
-
-        /* --- FAQ --- */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item { margin-bottom: 15px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
-        .faq-question { padding: 20px; background: #f9f9f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-        .faq-question:hover { background: #f0f0f0; }
-        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .faq-item.active .faq-answer { padding: 20px; max-height: 800px; }
-        .faq-item.active .faq-toggle { transform: rotate(180deg); }
-        .faq-toggle { transition: transform 0.3s; }
-
-        /* --- DEPOIMENTOS --- */
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
-        .testimonial-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
-        .testimonial-card::before { content: '"'; font-size: 4rem; color: #f0f0f0; position: absolute; top: 10px; left: 20px; }
-        .testimonial-text { margin-bottom: 20px; font-style: italic; position: relative; z-index: 1; }
-        .testimonial-author { display: flex; align-items: center; }
-        .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; margin-right: 15px; object-fit: cover; }
-        .testimonial-rating { color: #ffc107; margin-bottom: 10px; }
-
-        /* --- FOOTER --- */
-        footer { background: #0f0f0f; color: #888; padding: 80px 0 30px; margin-top: auto; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer-col h3 { color: #fff; margin-bottom: 25px; font-size: 1.2rem; }
-        .footer-links a { color: #888; text-decoration: none; display: block; margin-bottom: 12px; transition: 0.3s; }
-        .footer-links a:hover { color: #fff; padding-left: 5px; }
-        .social-icons a { color: #fff; font-size: 1.5rem; margin-right: 15px; }
-
-        /* --- WHATSAPP FLOAT --- */
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px;
-            background-color: #25D366; color: white;
-            width: 70px; height: 70px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 35px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 2000; text-decoration: none; transition: 0.3s;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
-
-        /* =========================================
-           MEDIA QUERIES (ADAPTAÇÃO CELULAR E TABLET)
-           ========================================= */
-
-        /* TABLET E LAPTOPS PEQUENOS (max 1024px) */
-        @media (max-width: 1024px) {
-            .features-grid { grid-template-columns: repeat(2, 1fr); } 
-            .steps-grid { grid-template-columns: repeat(2, 1fr); }
-            
-            .simulator-wrapper { flex-direction: column; }
-            .sim-left { padding: 40px; }
-            .sim-right { padding: 40px; width: 100%; }
-            
-            .hero-text h1 { font-size: 2.5rem; }
-        }
-
-        /* CELULARES (max 768px) */
-        @media (max-width: 768px) {
-            /* Geral */
-            section { padding: 50px 0; }
-            .section-title h2 { font-size: 2rem; }
-            
-            /* Header Mobile */
-            .mobile-toggle { display: block; }
-            .header-btn { display: none; } /* Botão do header some (vai para o menu) */
-            
-            .nav-menu {
-                position: fixed;
-                top: 90px; left: -100%; /* Menu oculto à esquerda */
-                width: 100%; height: calc(100vh - 90px);
-                background: white;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 40px;
-                transition: 0.4s ease;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                z-index: 999;
-                gap: 20px;
-            }
-            .nav-menu.active { left: 0; } /* Menu visível */
-            .nav-menu li { width: 100%; text-align: center; }
-            .nav-link { display: block; padding: 15px; font-size: 1.2rem; border-bottom: 1px solid #f5f5f5; }
-            .nav-link.active::after { display: none; }
-
-            /* Hero */
-            .hero-content { flex-direction: column; gap: 30px; text-align: center; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .hero-text p { margin: 0 auto 30px; }
-            .hero-image img { transform: none; width: 100%; max-width: 400px; } 
-
-            /* Grids em 1 Coluna */
-            .features-grid { grid-template-columns: 1fr; }
-            .steps-grid { grid-template-columns: 1fr; }
-            .info-grid { grid-template-columns: 1fr; gap: 40px; }
-            .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            
-            /* Simulador */
-            .sim-left { padding: 25px; }
-            .sim-right { padding: 30px 20px; }
-            #res-valor-total { font-size: 2.5rem; }
-
-            /* Ordem dos elementos (Imagem abaixo do texto) */
-            .info-grid { display: flex; flex-direction: column-reverse; }
-            .info-grid > div { width: 100%; }
-            /* Seção Sobre Nós: manter ordem original */
-            #sobre .info-grid { flex-direction: column; }
-
-            /* Footer */
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-links a:hover { padding-left: 0; color: var(--white); } 
-            
-            /* Whatsapp Float Ajustado */
-            .whatsapp-float { width: 60px; height: 60px; font-size: 30px; bottom: 20px; right: 20px; }
-        }
-    </style>
 </head>
 <body>
 
     <header>
         <div class="container header-container">
             <a href="#" class="logo" onclick="switchTab('home'); fecharMenuMobile()">
-                <img src="empresa.png" alt="Logo EDW">
+                <img src="img/empresa.png" alt="Logo EDW">
                 EDW <span>Cred</span>
             </a>
             
@@ -303,6 +30,7 @@
                 <li><a class="nav-link" onclick="switchTab('clt'); fecharMenuMobile()">Empréstimo CLT</a></li>
                 <li><a class="nav-link" onclick="switchTab('fgts'); fecharMenuMobile()">FGTS</a></li>
                 <li><a class="nav-link" onclick="switchTab('inss'); fecharMenuMobile()">INSS</a></li>
+                <li><a class="nav-link" onclick="switchTab('siape'); fecharMenuMobile()">SIAPE Federal</a></li>
                 <li><a class="nav-link" onclick="switchTab('sobre'); fecharMenuMobile()">Sobre Nós</a></li>
                 
                 <li style="display: none; margin-top: 10px;" id="mobile-cta-btn">
@@ -325,19 +53,49 @@
                 <div class="container hero-content">
                     <div class="hero-text">
                         <h1>Crédito Inteligente para Você Realizar Sonhos</h1>
-                        <p>A EDW Cred conecta você às melhores taxas do mercado. Soluções para CLT, Aposentados e Antecipação de FGTS com total transparência.</p>
+                        <p>A EDW Cred conecta você às melhores taxas do mercado. Soluções para CLT, Servidores Federais (SIAPE), Aposentados e Antecipação de FGTS com total transparência.</p>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: flex-start;">
                             <a onclick="switchTab('clt')" class="btn">Sou CLT <i class="fas fa-arrow-right"></i></a>
                             <a onclick="switchTab('fgts')" class="btn btn-outline">Tenho FGTS</a>
                         </div>
                     </div>
                     <div class="hero-image">
-                        <img src="Consig.png" alt="Consignado Home">
+                        <img src="img/Consig.png" alt="Consignado Home">
                     </div>
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container" style="margin-top: 40px;">
+                <div class="section-title">
+                    <h2>Comparativo de Taxas</h2>
+                    <p>Veja como é mais vantajoso contratar com a EDW Cred.</p>
+                </div>
+                
+                <div style="max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <div class="rate-bar-container">
+                        <div class="rate-bar-label"><span>Cartão de Crédito (Rotativo)</span> <span>~12,00% a.m.</span></div>
+                        <div class="rate-bar-bg"><div class="rate-bar-fill" style="width: 100%; background: #bdbdbd;"></div></div>
+                    </div>
+                    <div class="rate-bar-container">
+                        <div class="rate-bar-label"><span>Cheque Especial</span> <span>~8,00% a.m.</span></div>
+                        <div class="rate-bar-bg"><div class="rate-bar-fill" style="width: 66%; background: #bdbdbd;"></div></div>
+                    </div>
+                    <div class="rate-bar-container">
+                        <div class="rate-bar-label"><span>Empréstimo Pessoal</span> <span>~6,80% a.m.</span></div>
+                        <div class="rate-bar-bg"><div class="rate-bar-fill" style="width: 56%; background: #bdbdbd;"></div></div>
+                    </div>
+                    <div class="rate-bar-container">
+                        <div class="rate-bar-label"><span style="color: #d81b60;">Antecipação FGTS (EDW Cred)</span> <span style="color: #d81b60;">1,79% a.m.</span></div>
+                        <div class="rate-bar-bg"><div class="rate-bar-fill" style="width: 15%; background: #d81b60;">1,79%</div></div>
+                    </div>
+                    <div class="rate-bar-container">
+                        <div class="rate-bar-label"><span style="color: #d81b60;">Empréstimo Consignado (EDW Cred)</span> <span style="color: #d81b60;">A partir de 1,61% a.m.</span></div>
+                        <div class="rate-bar-bg"><div class="rate-bar-fill" style="width: 13%; background: #d81b60;">1,61%</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 80px;">
                 <div class="section-title">
                     <h2>Soluções Completas</h2>
                     <p>Escolha a modalidade ideal para o seu momento financeiro.</p>
@@ -370,37 +128,6 @@
                 </div>
             </div>
 
-            <div style="background: #fafafa; padding: 80px 0; margin-top: 80px;">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Por que a EDW Cred?</h2>
-                        <p>Nossa missão é oferecer crédito justo e acessível.</p>
-                    </div>
-                    <div class="steps-grid">
-                        <div class="step-card">
-                            <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
-                            <h3>Segurança</h3>
-                            <p>Seus dados protegidos e operações auditadas.</p>
-                        </div>
-                        <div class="step-card">
-                            <i class="fas fa-bolt" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
-                            <h3>Rapidez</h3>
-                            <p>Dinheiro na conta via PIX em tempo recorde.</p>
-                        </div>
-                        <div class="step-card">
-                            <i class="fas fa-percentage" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
-                            <h3>Melhores Taxas</h3>
-                            <p>Negociamos direto com os bancos para você.</p>
-                        </div>
-                        <div class="step-card">
-                            <i class="fas fa-headset" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
-                            <h3>Suporte Humanizado</h3>
-                            <p>Atendimento real via WhatsApp.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="container" style="margin-top: 80px;">
                 <div class="section-title">
                     <h2>O que nossos clientes dizem</h2>
@@ -408,39 +135,30 @@
                 </div>
                 <div class="testimonials-grid">
                     <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
                         <div class="testimonial-text">
-                            "Consegui quitar todas as minhas dívidas com cartão de crédito. O processo foi super rápido e o atendimento excelente!"
+                            "Como aposentada servidora federal, consegui fazer uma Port + Refin para realizar minha viagem em família. O processo foi super rápido e o atendimento excelente!"
                         </div>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria Silva">
-                            <div><strong>Maria Silva</strong><p style="font-size: 0.9rem;">CLT - São Paulo/SP</p></div>
+                            <img src="img/client.png" alt="Maria Silva">
+                            <div><strong>Maria Silva</strong><p style="font-size: 0.9rem;">SIAPE - Servidora Federal</p></div>
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
                         <div class="testimonial-text">
-                            "Antecipar meu FGTS foi a melhor decisão. Usei o dinheiro para dar entrada no meu apartamento. Recomendo a EDW Cred!"
+                            "Sou beneficiária do INSS, consegui fazer meu empréstimo com rapidez e segurança. O valor me ajudou a realizar o que eu precisava. Recomendo a EDW Cred!"
                         </div>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="João Santos">
-                            <div><strong>João Santos</strong><p style="font-size: 0.9rem;">FGTS - Rio de Janeiro/RJ</p></div>
+                            <img src="img/client1.png" alt="Selma Dolphe">
+                            <div><strong>Selma Dolphe</strong><p style="font-size: 0.9rem;">INSS - Aposentada</p></div>
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        </div>
                         <div class="testimonial-text">
-                            "Como aposentado, precisei de um empréstimo para fazer uma cirurgia. A EDW me ajudou com as melhores condições do mercado."
+                            "Fiz empréstimo CLT porque estava precisando de dinheiro para uma emergência. O consultor me atendeu super bem e muito rápido pelo WhatsApp. Meu crédito foi aprovado e o dinheiro caiu no mesmo dia, em poucas horas. Agilidade incrível!"
                         </div>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Carlos Oliveira">
-                            <div><strong>Carlos Oliveira</strong><p style="font-size: 0.9rem;">INSS - Belo Horizonte/MG</p></div>
+                            <img src="img/client2.png" alt="Roberto Lima">
+                            <div><strong>Roberto Lima</strong><p style="font-size: 0.9rem;">CLT - Credito do Trabalhador</p></div>
                         </div>
                     </div>
                 </div>
@@ -461,7 +179,7 @@
                         <a href="#simulador-clt-anchor" class="btn">Ir para Simulador</a>
                     </div>
                     <div class="hero-image">
-                        <img src="clt.png" alt="Banner CLT">
+                        <img src="img/clt.png" alt="Banner CLT">
                     </div>
                 </div>
             </div>
@@ -476,19 +194,17 @@
                     <div class="sim-left">
                         <div class="form-group">
                             <label><i class="fas fa-money-bill-wave"></i> Salário Bruto (R$)</label>
-                            <input type="number" id="clt-salario" placeholder="Ex: 2500.00" step="0.01">
+                            <input type="number" id="clt-salario" placeholder="Ex: 1.630,00" step="0.01">
                         </div>
                         <div class="form-group">
                             <label><i class="fas fa-calendar-alt"></i> Quantidade de Parcelas</label>
                             <select id="clt-parcelas">
                                 <option value="">Selecione o prazo...</option>
                                 <option value="6">6 parcelas</option>
-                                <option value="9">9 parcelas</option>
                                 <option value="12">12 parcelas</option>
-                                <option value="15">15 parcelas</option>
-                                <option value="18">18 parcelas</option>
                                 <option value="24">24 parcelas</option>
                                 <option value="36">36 parcelas</option>
+                                <option value="48">48 parcelas</option>
                             </select>
                         </div>
 
@@ -535,10 +251,10 @@
                             <li><i class="fas fa-check"></i> Empresa Privada conveniada ao banco</li>
                             <li><i class="fas fa-check"></i> Ter margem consignável disponível</li>
                         </ul>
-                        <a onclick="abrirWhatsApp('Quero saber se minha empresa é conveniada!')" class="btn btn-outline" style="margin-top: 20px;">Consultar Convênio</a>
+                        <a onclick="abrirWhatsApp('Quero saber se Consigo o Convênio CLT!')" class="btn btn-outline" style="margin-top: 20px;">Consultar Convênio</a>
                     </div>
                     <div style="text-align: center;">
-                        <img src="requisCLT.png" alt="Requisitos CLT" style="max-width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <img src="img/requisCLT.png" alt="Requisitos CLT" style="max-width: 380px; width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                     </div>
                 </div>
             </div>
@@ -606,6 +322,15 @@
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
+                            <span>O que acontece se eu mudar de empresa?</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Se você mudar para outra empresa privada com convênio, a parcela continuará sendo descontada. Caso contrário, você receberá um carnê ou boleto para pagamento mensal.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
                             <span>O que acontece se eu for demitido?</span>
                             <i class="fas fa-chevron-down faq-toggle"></i>
                         </div>
@@ -625,7 +350,7 @@
                         <p>Seu dinheiro está parado no fundo de garantia? Antecipe agora até 12 parcelas anuais e receba em minutos via PIX.</p>
                         
                         <div style="background: #fffde7; border-left: 4px solid #fbc02d; padding: 15px; margin-bottom: 25px; border-radius: 4px;">
-                            <strong><i class="fas fa-star"></i> Novas Regras:</strong> O valor mínimo de contratação por bloco agora é de R$ 100,00. Consulte condições específicas.
+                            <strong><i class="fas fa-exclamation-triangle"></i> Novas Regras 2025:</strong> Confira abaixo as mudanças implementadas pelo governo.
                         </div>
 
                         <a onclick="abrirWhatsApp('Olá, quero simular minha antecipação do FGTS!')" class="btn">
@@ -633,18 +358,48 @@
                         </a>
                     </div>
                     <div class="hero-image">
-                        <img src="fgtsanun.png" alt="Anuncio FGTS">
+                        <img src="img/fgtsanun.png" alt="Anuncio FGTS">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="section-title">
+                    <h2>O que mudou com as Novas Regras?</h2>
+                    <p>Fique atento às limitações vigentes desde 1º de Novembro de 2025.</p>
+                </div>
+                
+                <div class="new-rules-grid">
+                    <div class="rule-card">
+                        <i class="fas fa-hand-holding-usd rule-icon"></i>
+                        <h3>Limite Anual</h3>
+                        <p>Foi criado um limite de <strong>R$ 500,00</strong> por ano/parcela adiantada.</p>
+                    </div>
+                    <div class="rule-card">
+                        <i class="fas fa-level-down-alt rule-icon"></i>
+                        <h3>Valor Máximo Total</h3>
+                        <p>Máximo de 5 parcelas no 1º ano (R$ 2.500) e 3 parcelas depois (R$ 1.500).</p>
+                    </div>
+                    <div class="rule-card">
+                        <i class="fas fa-calendar-check rule-icon"></i>
+                        <h3>Frequência</h3>
+                        <p>Agora é permitido contratar apenas <strong>1 vez por ano</strong>.</p>
+                    </div>
+                    <div class="rule-card">
+                        <i class="fas fa-clock rule-icon"></i>
+                        <h3>Carência</h3>
+                        <p>Novo prazo após a adesão com <strong>carência de 90 dias</strong>.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container" style="margin-top: 80px;">
                 <div class="section-title">
                     <h2>Entenda como Funciona</h2>
                     <p>Uma modalidade de crédito que não compromete sua renda mensal.</p>
                 </div>
                 <div style="text-align: center; margin-bottom: 60px;">
-                     <img src="FGTS.png" alt="Infográfico FGTS" style="max-width: 350px; width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                     <img src="img/FGTS.png" alt="Infográfico FGTS" style="max-width: 350px; width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                 </div>
 
                 <div style="background: var(--primary); color: white; padding: 40px; border-radius: 15px; text-align: center; max-width: 800px; margin: 0 auto;">
@@ -658,9 +413,6 @@
 
             <div class="container" style="margin-top: 100px;">
                 <div class="info-grid">
-                    <div style="text-align: center;">
-                        <img src="requisFGTS.png" alt="Requisitos FGTS" style="max-width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    </div>
                     <div class="info-list">
                         <h2>Requisitos Simples</h2>
                         <p>A antecipação do FGTS é a modalidade menos burocrática do mercado.</p>
@@ -674,12 +426,15 @@
                             <i class="fas fa-thumbs-up"></i> Aceitamos negativados! Não há consulta ao SPC/Serasa.
                         </p>
                     </div>
+                    <div style="text-align: center;">
+                        <img src="img/requisFGTS.png" alt="Requisitos FGTS" style="max-width: 380px; width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
                 </div>
             </div>
 
              <div style="background: #f9f9f9; padding: 80px 0; margin-top: 80px;">
                 <div class="container">
-                    <div class="section-title"><h2>Vantagens FGTS</h2></div>
+                    <div class="section-title"><h2>Vantagens EDW Cred</h2></div>
                     <div class="features-grid">
                         <div class="feature-card">
                             <i class="fas fa-bolt feature-icon"></i>
@@ -688,8 +443,8 @@
                         </div>
                         <div class="feature-card">
                             <i class="fas fa-wallet feature-icon"></i>
-                            <h3>Sem Mensalidade</h3>
-                            <p>Não pesa no bolso. O desconto é anual direto do saldo do FGTS.</p>
+                            <h3>Taxa Competitiva</h3>
+                            <p>Taxas a partir de 1,79% a.m. e desconto anual direto do FGTS.</p>
                         </div>
                         <div class="feature-card">
                             <i class="fas fa-mobile-alt feature-icon"></i>
@@ -751,96 +506,390 @@
                 <div class="container hero-content">
                     <div class="hero-text">
                         <h1>Empréstimo Consignado INSS</h1>
-                        <p>Aposentados e Pensionistas têm direito às menores taxas de juros do Brasil, garantidas pelo teto do INSS.</p>
-                        <p>Aproveite para realizar sonhos, quitar dívidas caras ou reformar a casa.</p>
+                        <p>A melhor opção de crédito para Aposentados e Pensionistas. Com desconto direto na folha de pagamento, você garante taxas reduzidas, segurança total e facilidade na contratação.</p>
+                        
+                        <ul style="list-style: none; margin-bottom: 20px;">
+                            <li><i class="fas fa-check" style="color:var(--green)"></i> Taxas a partir de <strong>1,61% a.m.</strong></li>
+                            <li><i class="fas fa-check" style="color:var(--green)"></i> Prazo de até <strong>84 meses</strong></li>
+                            <li><i class="fas fa-check" style="color:var(--green)"></i> Sem consulta ao SPC/Serasa</li>
+                        </ul>
+
                         <a onclick="abrirWhatsApp('Sou INSS e quero simular!')" class="btn">Simular Agora</a>
                     </div>
                     
                     <div class="hero-image">
                         <div class="carousel-container">
                             <div class="carousel-slide active">
-                                <img src="inss.png" alt="INSS Slide 1">
+                                <img src="img/inss.png" alt="INSS Slide 1">
                             </div>
                             <div class="carousel-slide">
-                                <img src="inss2.png" alt="INSS Slide 2">
+                                <img src="img/inss2.png" alt="INSS Slide 2">
                             </div>
                         </div>
-                        <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 10px;">Imagens ilustrativas das campanhas atuais</p>
+                        <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 10px;">Campanha de Taxas Reduzidas</p>
                     </div>
                 </div>
             </div>
 
             <div class="container">
-                <div class="section-title">
-                    <h2>Modalidades Disponíveis</h2>
+                <div class="alert-box">
+                    <h3 style="color: #c62828; margin-bottom: 10px;"><i class="fas fa-lock"></i> Benefício Bloqueado?</h3>
+                    <p>Como medida de segurança, benefícios novos são bloqueados. O desbloqueio é feito com <strong>biometria no app Meu INSS</strong>. Sem isso, não conseguimos liberar seu crédito. Precisa de ajuda? Chame no WhatsApp!</p>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-percentage feature-icon"></i>
-                        <h3>Margem Nova</h3>
-                        <p>Utilize sua margem livre para contratar crédito novo com taxas reduzidas.</p>
+
+                <div class="section-title">
+                    <h2>Conheça Nossos Produtos</h2>
+                    <p>Soluções completas para o seu momento financeiro.</p>
+                </div>
+
+                <div class="container">
+                    <div class="inss-detail-card">
+                        <h3><i class="fas fa-file-signature"></i> Empréstimo Novo (Margem Livre)</h3>
+                        <p>Ideal para quem tem margem disponível e precisa de dinheiro rápido. O valor é depositado na sua conta em até 24h após a aprovação.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Taxas a partir de 1,61% a.m.</li>
+                            <li><i class="fas fa-check"></i> Até 84 meses para pagar</li>
+                            <li><i class="fas fa-check"></i> Sem consulta ao SPC/Serasa</li>
+                        </ul>
+                        <a onclick="abrirWhatsApp('Quero um Empréstimo Novo INSS')" class="btn btn-outline">Simular Novo</a>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-exchange-alt feature-icon"></i>
-                        <h3>Portabilidade</h3>
-                        <p>Traga seus contratos de outros bancos, reduza os juros e receba um valor de troco.</p>
+
+                    <div class="inss-detail-card">
+                        <h3><i class="fas fa-exchange-alt"></i> Portabilidade de Crédito</h3>
+                        <p>Traga seus empréstimos de outros bancos para a EDW Cred. Nós compramos sua dívida, reduzimos a taxa de juros e você ainda recebe um valor de troco na conta.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Juros menores que o contrato original</li>
+                            <li><i class="fas fa-check"></i> Troco na conta (Dinheiro extra)</li>
+                            <li><i class="fas fa-check"></i> Sem aumentar o prazo</li>
+                        </ul>
+                        <a onclick="abrirWhatsApp('Quero fazer Portabilidade INSS')" class="btn btn-outline">Fazer Portabilidade</a>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-sync feature-icon"></i>
-                        <h3>Refinanciamento</h3>
-                        <p>Refinancie contratos antigos que você já pagou uma parte e libere mais dinheiro.</p>
+
+                    <div class="inss-detail-card">
+                        <h3><i class="fas fa-sync-alt"></i> Refinanciamento</h3>
+                        <p>Já é nosso cliente ou possui contratos antigos? O refinanciamento permite renovar seu empréstimo, mantendo o valor da parcela e liberando um novo valor em dinheiro.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Liberação rápida de saldo</li>
+                            <li><i class="fas fa-check"></i> Mesma parcela que você já paga</li>
+                            <li><i class="fas fa-check"></i> Ótimo para quem não tem margem livre</li>
+                        </ul>
+                        <a onclick="abrirWhatsApp('Quero Refinanciar')" class="btn btn-outline">Refinanciar</a>
+                    </div>
+
+                    <div class="inss-detail-card" style="border-left-color: #ff9800;">
+                        <h3><i class="fas fa-random" style="color: #ff9800;"></i> Combo: Portabilidade + Refin</h3>
+                        <p>A melhor estratégia para liberar dinheiro: Primeiro fazemos a portabilidade para baixar os juros do seu contrato atual, e depois refinanciamos o saldo devedor menor para liberar o máximo de crédito possível.</p>
+                        <a onclick="abrirWhatsApp('Quero Combo Porta+Refin do INSS')" class="btn">Simular Combo</a>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 60px;">
+                    <h2>Cartões Consignados</h2>
+                    <p>Você tem direito a duas margens extras de 5% cada.</p>
+                </div>
+
+                <div class="cards-compare-grid">
+                    <div class="card-type">
+                        <h4><i class="fas fa-credit-card"></i> Cartão Consignado (RMC)</h4>
+                        <ul>
+                            <li>Limite de crédito pré-aprovado</li>
+                            <li>Margem exclusiva de 5%</li>
+                            <li>Saque de até 70% do limite em dinheiro</li>
+                            <li>Sem anuidade</li>
+                        </ul>
+                        <a onclick="abrirWhatsApp('Quero Cartão RMC')" class="btn btn-outline" style="margin-top:15px;">Solicitar RMC</a>
+                    </div>
+                    <div class="card-type">
+                        <h4><i class="fas fa-address-card"></i> Cartão Benefício (RCC)</h4>
+                        <ul>
+                            <li>Margem EXTRA de +5% (além do RMC)</li>
+                            <li>Seguro de Vida e Auxílio Funeral inclusos</li>
+                            <li>Descontos em farmácias</li>
+                            <li>Saque em dinheiro e crédito</li>
+                        </ul>
+                        <a onclick="abrirWhatsApp('Quero Cartão Benefício')" class="btn btn-outline" style="margin-top:15px;">Solicitar Benefício</a>
+                    </div>
+                </div>
+
+                <div class="bpc-box">
+                    <i class="fas fa-wheelchair bpc-icon"></i>
+                    <div>
+                        <h3>Beneficiários BPC/LOAS</h3>
+                        <p>Aposentados por invalidez e beneficiários do BPC/LOAS também podem ter acesso ao crédito consignado, sujeito à legislação vigente e desbloqueio do benefício (mínimo 90 dias de concessão).</p>
+                        <a onclick="abrirWhatsApp('Sou BPC/LOAS e quero simular')" class="btn" style="margin-top: 15px;">Consultar Regras BPC</a>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 80px;">
+                    <h2>Planeje seu futuro: Aumento Salarial 2026</h2>
+                    <p>O aumento do salário mínimo amplia sua margem. Veja quanto você poderá liberar:</p>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="salary-table">
+                        <thead>
+                            <tr><th>Salário Atual</th><th>Previsão 2026</th><th>Aumento Margem</th><th class="highlight-col">Crédito Disponível*</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>R$ 1.518,00</td><td>R$ 1.630,94</td><td>R$ 39,53</td><td class="highlight-col">R$ 1.813,38</td></tr>
+                            <tr><td>R$ 3.036,00</td><td>R$ 3.172,62</td><td>R$ 47,82</td><td class="highlight-col">R$ 2.193,58</td></tr>
+                            <tr><td>R$ 4.554,00</td><td>R$ 4.758,93</td><td>R$ 71,73</td><td class="highlight-col">R$ 3.290,38</td></tr>
+                            <tr><td>R$ 6.072,00</td><td>R$ 6.345,24</td><td>R$ 95,63</td><td class="highlight-col">R$ 4.387,17</td></tr>
+                            <tr><td>R$ 7.590,00</td><td>R$ 7.931,55</td><td>R$ 119,54</td><td class="highlight-col">R$ 5.483,96</td></tr>
+                        </tbody>
+                    </table>
+                    <small style="display:block; margin-top: 10px; color: #777;">*Valores estimados em cenário realista. Consulte condições.</small>
+                </div>
+
+                <div class="section-title" style="margin-top: 80px;"><h2>Dúvidas Frequentes</h2></div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question"><span>O que é um empréstimo consignado?</span><i class="fas fa-chevron-down faq-toggle"></i></div>
+                        <div class="faq-answer"><p>É uma modalidade de crédito onde as parcelas são descontadas diretamente da folha de pagamento ou benefício do INSS. Por ter menor risco, oferece os juros mais baixos do mercado.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question"><span>Como saber se tenho margem?</span><i class="fas fa-chevron-down faq-toggle"></i></div>
+                        <div class="faq-answer"><p>A margem é o valor máximo que pode ser descontado (35% para empréstimo, 5% RMC, 5% RCC). Entre em contato conosco que consultamos seu extrato gratuitamente.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question"><span>Estou negativado, posso fazer?</span><i class="fas fa-chevron-down faq-toggle"></i></div>
+                        <div class="faq-answer"><p>Sim! O empréstimo consignado não faz consulta ao SPC/Serasa, pois a garantia é o desconto em folha.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="siape" class="hidden fade-in">
+            <div class="hero">
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <h1>Consignado para Servidor Federal (SIAPE)</h1>
+                        <p>Condições exclusivas para Servidores Federais Ativos, Aposentados e Pensionistas do Poder Executivo. Aproveite o prazo estendido e as menores taxas.</p>
+                        
+                        <div class="siape-stats-container">
+                            <div class="siape-stat">
+                                <div class="siape-stat-number">1,55%</div>
+                                <div class="siape-stat-label">Taxa Mensal</div>
+                            </div>
+                            <div class="siape-stat">
+                                <div class="siape-stat-number">96x</div>
+                                <div class="siape-stat-label">Prazo Máximo</div>
+                            </div>
+                            <div class="siape-stat">
+                                <div class="siape-stat-number">45%</div>
+                                <div class="siape-stat-label">Margem Total</div>
+                            </div>
+                            <div class="siape-stat">
+                                <div class="siape-stat-number">100%</div>
+                                <div class="siape-stat-label">Digital</div>
+                            </div>
+                        </div>
+
+                        <ul style="list-style: none; margin-bottom: 30px; font-size: 1.1rem;">
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--green);"></i> <strong>Prazo de até 96 meses</strong> para pagar</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--green);"></i> <strong>Sem avalista</strong> e aceitamos negativados</li>
+                            <li><i class="fas fa-check-circle" style="color: var(--green);"></i> <strong>100% Digital</strong> via autorização SouGov.br</li>
+                        </ul>
+
+                        <a onclick="abrirWhatsApp('Olá, sou Servidor Federal SIAPE e quero simular!')" class="btn">
+                            <i class="fab fa-whatsapp"></i> Simular SIAPE Agora
+                        </a>
+                    </div>
+                    <div class="hero-image">
+                        <img src="img/siape.png" alt="Servidor Federal SIAPE" onerror="this.src='img/Consig.png'">
                     </div>
                 </div>
             </div>
 
-            <div style="background: var(--primary); color: white; padding: 80px 0; margin-top: 80px;">
-                <div class="container" style="text-align: center;">
-                    <h2 style="color: white; margin-bottom: 20px;">Cartão Benefício e Cartão Consignado</h2>
-                    <p style="max-width: 800px; margin: 0 auto 30px; opacity: 0.9; font-size: 1.1rem;">Além da margem de empréstimo, você tem direito a margens exclusivas para cartão de crédito e cartão benefício, que liberam saque em dinheiro e limite para compras.</p>
-                    <a onclick="abrirWhatsApp('Quero saber sobre Cartão Benefício INSS')" class="btn" style="background: white; color: var(--primary);">Consultar Margem de Cartão</a>
+            <div class="container">
+                <div class="siape-highlight">
+                    <h3><i class="fas fa-user-tie"></i> Quem pode contratar?</h3>
+                    <ul style="margin-bottom: 0;">
+                        <li><i class="fas fa-check" style="color: var(--green);"></i> Servidores Federais Ativos (Permanentes)</li>
+                        <li><i class="fas fa-check" style="color: var(--green);"></i> Aposentados do Executivo Federal</li>
+                        <li><i class="fas fa-check" style="color: var(--green);"></i> Pensionistas de Servidores Federais</li>
+                        <li><i class="fas fa-check" style="color: var(--green);"></i> Militares das Forças Armadas</li>
+                    </ul>
+                </div>
+
+                <div class="section-title">
+                    <h2>Vantagens Exclusivas SIAPE</h2>
+                    <p>O crédito consignado é a modalidade mais barata e segura para servidores públicos federais.</p>
+                </div>
+                
+                <div class="siape-benefits-grid">
+                    <div class="siape-benefit-card">
+                        <i class="fas fa-calendar-alt siape-benefit-icon"></i>
+                        <h3>Prazo Alongado</h3>
+                        <p>Parcele seu empréstimo em até <strong>96 vezes (8 anos)</strong>, garantindo parcelas menores que cabem no bolso.</p>
+                    </div>
+                    <div class="siape-benefit-card">
+                        <i class="fas fa-percentage siape-benefit-icon"></i>
+                        <h3>Taxas Reduzidas</h3>
+                        <p>Taxas a partir de <strong>1,55% ao mês</strong>, muito inferiores às do cartão de crédito e empréstimo pessoal.</p>
+                    </div>
+                    <div class="siape-benefit-card">
+                        <i class="fas fa-money-bill-wave siape-benefit-icon"></i>
+                        <h3>Margem de 45%</h3>
+                        <p>Utilize 35% para empréstimo, 5% para cartão de crédito e 5% para cartão benefício.</p>
+                    </div>
+                    <div class="siape-benefit-card">
+                        <i class="fas fa-mobile-alt siape-benefit-icon"></i>
+                        <h3>Autorização SouGov</h3>
+                        <p>Todo o processo de autorização é feito pelo aplicativo <strong>SouGov.br</strong>, sem papelada.</p>
+                    </div>
+                    <div class="siape-benefit-card">
+                        <i class="fas fa-user-shield siape-benefit-icon"></i>
+                        <h3>Segurança Total</h3>
+                        <p>Desconto direto em folha, sem risco de inadimplência e sem consulta ao SPC/Serasa.</p>
+                    </div>
+                    <div class="siape-benefit-card">
+                        <i class="fas fa-bolt siape-benefit-icon"></i>
+                        <h3>Liberação Rápida</h3>
+                        <p>Dinheiro na conta em até <strong>48 horas</strong> após a assinatura do contrato digital.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="siape-comparison">
+                <div class="container">
+                    <h3>Compare as Vantagens do Consignado SIAPE</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Consignado SIAPE</th>
+                                <th>Empréstimo Pessoal</th>
+                                <th>Cartão de Crédito</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Taxa de Juros Mensal</td>
+                                <td class="highlight-siape">A partir de 1,55%</td>
+                                <td>4% a 10%</td>
+                                <td>12% a 15%</td>
+                            </tr>
+                            <tr>
+                                <td>Prazo Máximo</td>
+                                <td class="highlight-siape">Até 96 meses</td>
+                                <td>Até 36 meses</td>
+                                <td>Até 24 meses</td>
+                            </tr>
+                            <tr>
+                                <td>Consulta ao SPC/Serasa</td>
+                                <td class="highlight-siape">Não</td>
+                                <td>Sim</td>
+                                <td>Sim</td>
+                            </tr>
+                            <tr>
+                                <td>Necessidade de Avalista</td>
+                                <td class="highlight-siape">Não</td>
+                                <td>Depende do caso</td>
+                                <td>Não</td>
+                            </tr>
+                            <tr>
+                                <td>Liberação do Crédito</td>
+                                <td class="highlight-siape">Até 48h</td>
+                                <td>3 a 7 dias</td>
+                                <td>Imediata</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 80px;">
+                <div class="info-grid">
+                    <div class="info-list">
+                        <h2>Como Funciona o Processo</h2>
+                        <p>Para contratar, você precisa autorizar a EDW Cred (através dos bancos parceiros) no sistema do governo. Veja como é fácil:</p>
+                        
+                        <div class="siape-process-steps">
+                            <div class="siape-step">
+                                <div class="siape-step-number">1</div>
+                                <h4>Simulação</h4>
+                                <p>Faça sua simulação online ou pelo WhatsApp</p>
+                            </div>
+                            <div class="siape-step">
+                                <div class="siape-step-number">2</div>
+                                <h4>Autorização</h4>
+                                <p>Autorize no app SouGov.br</p>
+                            </div>
+                            <div class="siape-step">
+                                <div class="siape-step-number">3</div>
+                                <h4>Documentação</h4>
+                                <p>Envie os documentos digitalmente</p>
+                            </div>
+                            <div class="siape-step">
+                                <div class="siape-step-number">4</div>
+                                <h4>Contratação</h4>
+                                <p>Assine o contrato digitalmente</p>
+                            </div>
+                            <div class="siape-step">
+                                <div class="siape-step-number">5</div>
+                                <h4>Liberação</h4>
+                                <p>Receba o dinheiro em conta</p>
+                            </div>
+                        </div>
+                        
+                        <a onclick="abrirWhatsApp('Preciso de ajuda para autorizar no SouGov')" class="btn btn-outline" style="margin-top: 25px;">
+                            Preciso de Ajuda com SouGov
+                        </a>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="img/sougov_tutorial.png" alt="Tutorial SouGov" style="max-width: 400px; width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" onerror="this.style.display='none'">
+                    </div>
                 </div>
             </div>
 
             <div class="container" style="margin-top: 80px;">
                 <div class="section-title">
-                    <h2>Perguntas Frequentes - INSS</h2>
-                    <p>Tire suas dúvidas sobre empréstimo consignado para aposentados</p>
+                    <h2>Perguntas Frequentes - SIAPE</h2>
                 </div>
                 <div class="faq-container">
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>Qual a taxa máxima de juros para o INSS?</span>
+                            <span>Servidor temporário pode contratar?</span>
                             <i class="fas fa-chevron-down faq-toggle"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Por lei, a taxa máxima para empréstimo consignado do INSS é de 2,14% ao mês. Na prática, conseguimos taxas ainda menores através de nossas parcerias.</p>
+                            <p>Geralmente, a linha de 96 meses é exclusiva para servidores efetivos (estáveis). Servidores temporários podem ter restrições ou prazos menores dependendo do contrato, mas ainda assim podem ter acesso a condições vantajosas.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>Posso contratar mais de um empréstimo consignado?</span>
+                            <span>O que é a margem consignável do SIAPE?</span>
                             <i class="fas fa-chevron-down faq-toggle"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Sim, desde que a soma de todas as parcelas não ultrapasse 35% do seu benefício. Podemos fazer uma portabilidade para unificar seus empréstimos em uma única parcela com taxa reduzida.</p>
+                            <p>É o valor máximo do seu salário que pode ser comprometido com parcelas. No SIAPE, o limite total é 45% (35% para empréstimo, 5% cartão crédito, 5% cartão benefício). Isso garante que você sempre terá pelo menos 55% do seu salário líquido disponível.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>O que é portabilidade de consignado?</span>
+                            <span>Posso fazer portabilidade de outros bancos?</span>
                             <i class="fas fa-chevron-down faq-toggle"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>É a transferência do seu empréstimo consignado de um banco para outro, geralmente com taxas de juros menores. Além da economia, você pode receber um valor extra (troco) na portabilidade.</p>
+                            <p>Sim! Se você já tem empréstimos caros em outros bancos, trazemos para a EDW Cred com taxas menores e você ainda pode receber um valor de troco na operação. A portabilidade é um processo simples e sem custos.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>Quanto tempo leva para o dinheiro ser liberado?</span>
+                            <span>Quanto tempo leva para o dinheiro cair na conta?</span>
                             <i class="fas fa-chevron-down faq-toggle"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Após a assinatura do contrato, o dinheiro é liberado em até 48 horas úteis. Em muitos casos, pode cair no mesmo dia, dependendo do horário da contratação.</p>
+                            <p>Após a assinatura do contrato digital, o dinheiro é liberado em até 48 horas úteis. Em muitos casos, pode cair no mesmo dia, dependendo do horário da contratação e da agilidade do banco em processar a operação.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Preciso ter um tempo mínimo de serviço?</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Para servidores ativos, é necessário ter pelo menos 3 meses de efetivo exercício. Para aposentados e pensionistas, não há tempo mínimo de aposentadoria necessário.</p>
                         </div>
                     </div>
                 </div>
@@ -882,8 +931,8 @@
                 </div>
 
                 <div class="partners-grid" style="justify-content: center;">
-                    <img src="+agil.png" alt="Mais Ágil" title="Mais Ágil" style="opacity: 1; filter: none; transform: scale(1.1);">
-                    <img src="v8.png" alt="Banco V8" title="Banco V8" style="opacity: 1; filter: none; transform: scale(1.1);">
+                    <a href="https://www.maisagilfranquias.com/" target="_blank"><img src="img/+agil.png" alt="Mais Ágil"></a>
+                    <a href="https://app.v8sistema.com/signin" target="_blank"><img src="img/v8.png" alt="Banco V8"></a>
                 </div>
 
                 <hr style="margin: 80px 0; border: 0; border-top: 1px solid #eee;">
@@ -894,18 +943,217 @@
                 </div>
 
                 <div class="partners-grid">
-                    <img src="phtech.png" alt="PH Tech">
-                    <img src="itau.png" alt="Itaú">
-                    <img src="c6.png" alt="C6 Bank">
-                    <img src="banrisul.png" alt="Banrisul">
-                    <img src="fintech_corban_logo.png" alt="Fintech Corban">
-                    <img src="facta.png" alt="Facta">
-                    <img src="dayco.png" alt="Daycoval" onerror="this.src='dayco.jpg'">
-                    <img src="Banco-BRB.png" alt="BRB" onerror="this.src='Banco-BRB.jpg'">
-                    <img src="Bancopanlogo.png" alt="Banco Pan">
-                    <img src="logo_7f191380.png" alt="Banco Hub">
-                    <img src="unnamed.png" alt="Presençabank">
-                    <img src="prata_digital_logo.png" alt="Banco Prata Digital">
+                    <div class="partner-item">
+                        <a href="https://phtech.uy3.com.br/login" target="_blank">
+                            <img src="img/phtech.png" alt="PH Tech">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>Suporte via Sistema</span>
+                            <span>Consulte seu gestor</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://portal.icconsig.com.br/proposal" target="_blank">
+                            <img src="img/itau.png" alt="Itaú">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 728 0728</span>
+                            <span>Ouv: 0800 570 0011</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://c6.c6consig.com.br/WebAutorizador/Login/AC.UI.LOGIN.aspx" target="_blank">
+                            <img src="img/c6.png" alt="C6 Bank">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 660 0060</span>
+                            <span>Ouv: 0800 660 6060</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://fintechdocorban.nossafintech.com.br/session/login" target="_blank">
+                            <img src="img/fintech_corban_logo.png" alt="Fintech Corban">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: (31) 99309-1709</span>
+                            <span>Ouv: 0800 0244 346</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://portal.presencabank.com.br/sign-in" target="_blank">
+                            <img src="img/unnamed.png" alt="Presençabank">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 591 2499</span>
+                            <span>Zap: (80) 0591-2477</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://webagente.eaglecred.com.br/index.php" target="_blank">
+                            <img src="img/FuturoPrev.png" alt="Futuro Previdência">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: (51) 4020-5350</span>
+                            <span>Ouv: 0800 703 1989</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://desenv.facta.com.br/sistemaNovo/login.php" target="_blank">
+                            <img src="img/facta.png" alt="Facta">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 942 0462</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://accounts-sso.bancopan.com.br/auth" target="_blank">
+                            <img src="img/Bancopanlogo.png" alt="Banco Pan">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 776 8000</span>
+                            <span>Ouv: 0800 776 9595</span>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-item">
+                        <a href="https://bemweb.bempromotora.com.br/autenticacao/login" target="_blank">
+                            <img src="img/banrisul.png" alt="Banrisul">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 646 1515</span>
+                            <span>Ouvidoria: 0800 644 2200</span>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-item">
+                        <a href="https://portaldecredito.daycoval.com.br/login" target="_blank">
+                            <img src="img/dayco.png" alt="Daycoval" onerror="this.src='img/dayco.jpg'">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 775 0500</span>
+                            <span>Ouvidoria: 0800 777 0900</span>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-item">
+                        <a href="https://corban.consig360.com.br/" target="_blank">
+                            <img src="img/Banco-BRB.png" alt="BRB" onerror="this.src='img/Banco-BRB.jpg'">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 648 6161</span>
+                            <span>Ouvidoria: 0800 642 1105</span>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-item">
+                        <a href="https://admin.bancoprata.com.br/" target="_blank">
+                            <img src="img/prata_digital_logo.png" alt="Banco Prata Digital">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 729 0722</span>
+                            <span>Ouvidoria: 0800 729 0722</span>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-item">
+                        <a href="https://www.bmgconsig.com.br/principal/fsconsignataria.jsp" target="_blank">
+                            <img src="img/Bmg.png" alt="Banco Bmg">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 979 9099</span>
+                            <span>Ouvidoria: 0800 723 2044</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://fgts.hubcredito.com.br/#/login" target="_blank">
+                            <img src="img/logo_7f191380.png" alt="Banco Hub">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>Verifique no App/Site</span>
+                            <span>do Parceiro</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://happyconsig.com.br/login" target="_blank">
+                            <img src="img/Happy.png" alt="Happy Consig">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 772 5281</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://sso-loan.picpay.com/auth/realms/loan-cns-ext/protocol/openid-connect/auth?client_id=ms-loan-cns-esteira&redirect_uri=http%3A%2F%2Festeira.digital%2Fauth%2Fpicpay_keycloak%2Fcallback&response_type=code&scope=openid&state=e6bcbdc7970a8b91ea6d99d7c26bc484a5c51892dfc8de76" target="_blank">
+                            <img src="img/Picpay.png" alt="PicPay">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 025 8000</span>
+                            <span>Ouv: 0800 025 2000</span>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <a href="https://sfc.sistemascr.com.br/autorizador/Login/AC.UI.LOGIN.aspx?FISession=c409cc7022" target="_blank">
+                            <img src="img/Crefisa.png" alt="Crefisa">
+                        </a>
+                        <div class="partner-info">
+                            <strong>Atendimento</strong>
+                            <span>SAC: 0800 727 4884</span>
+                            <span>Ouv: 0800 703 8891</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lgpd" class="hidden fade-in">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Política de Privacidade e LGPD</h2>
+                    <p>Seus dados são protegidos conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: left; max-width: 900px; margin: 0 auto;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">1. Coleta de Dados</h3>
+                    <p style="margin-bottom: 20px;">Coletamos apenas os dados necessários para a simulação e contratação de crédito (Nome, CPF, Telefone, E-mail), com o seu consentimento explícito.</p>
+
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">2. Compartilhamento</h3>
+                    <p style="margin-bottom: 20px;">Seus dados são compartilhados exclusivamente com as instituições financeiras parceiras (bancos listados em nosso site) para fins de análise de crédito e formalização de contratos.</p>
+
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">3. Seus Direitos</h3>
+                    <p style="margin-bottom: 20px;">Você tem o direito de solicitar a confirmação da existência de tratamento, acesso aos dados, correção de dados incompletos ou a eliminação dos dados desnecessários.</p>
+                    
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">4. Encarregado de Dados (DPO)</h3>
+                    <p style="margin-bottom: 20px;">Para exercer seus direitos ou tirar dúvidas sobre privacidade, entre em contato através dos nossos canais de atendimento.</p>
+
+                    <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+                    <div style="text-align: center;">
+                        <a onclick="switchTab('home')" class="btn btn-outline">Voltar para o Início</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -930,17 +1178,32 @@
                         <a href="#" onclick="switchTab('clt')">Empréstimo CLT</a>
                         <a href="#" onclick="switchTab('fgts')">Antecipação FGTS</a>
                         <a href="#" onclick="switchTab('inss')">Consignado INSS</a>
+                        <a href="#" onclick="switchTab('siape')">SIAPE Federal</a>
                         <a href="#" onclick="switchTab('sobre')">Sobre Nós</a>
+                        <a href="#" onclick="switchTab('lgpd')" style="color: #4fc3f7;">Política de Privacidade (LGPD)</a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h3>Atendimento</h3>
                     <p><i class="fas fa-clock"></i> Segunda a Sexta: 09h às 18h</p>
                     <p><i class="fas fa-map-marker-alt"></i> Atendimento Online para todo Brasil</p>
+                    <p><i class="fas fa-envelope"></i> contato@edwcred.com.br</p>
                 </div>
             </div>
-            <div class="footer-bottom" style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid #222;">
-                &copy; 2024 EDW Cred. Todos os direitos reservados. Correspondente Bancário autorizado nos termos da Resolução CMN nº 3.954/2011.
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.75rem; color: #888; text-align: justify;">
+                <p><strong>Informações Adicionais sobre Produtos e Taxas:</strong></p>
+                <br>
+                <p><strong>Empréstimo Consignado (INSS/SIAPE):</strong> Prazo mínimo de 6 meses e máximo de 96 meses. Valor mínimo de empréstimo R$ 100,00. Taxa de juros a partir de <strong>1,61% a.m.</strong> e Custo Efetivo Total (CET) a partir de <strong>1,66% a.m.</strong></p>
+                <p><strong>Portabilidade de Consignado:</strong> Taxa de juros a partir de <strong>1,55% a.m.</strong> e CET a partir de <strong>1,59% a.m.</strong></p>
+                <br>
+                <p><strong>Antecipação Saque-Aniversário FGTS (EDW Cred):</strong> Taxa de juros de <strong>1,79% a.m.</strong> e CET máximo de <strong>1,93% a.m.</strong> Sem tarifa de abertura e com IOF incluso. As parcelas têm valor mínimo de R$ 100,00. O valor mínimo de contrato é de R$ 50,00 e o valor máximo é limitado a R$ 2.500,00 (conforme regras vigentes). O prazo de pagamento é de até 60 meses (5 parcelas anuais), com quitação via desconto direto no saldo FGTS e pagamento ao cliente via Pix. 100% Digital.</p>
+                <br>
+                <p><em>*Os valores e taxas mencionados podem variar a partir das condições no momento da contratação e perfil do cliente. A EDW Cred atua como correspondente bancário. Não cobramos valores antecipados para aprovação de crédito.</em></p>
+            </div>
+
+            <div class="footer-bottom" style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #222;">
+                &copy; 2025 EDW Cred. Todos os direitos reservados. Correspondente Bancário autorizado nos termos da Resolução CMN nº 3.954/2011.
             </div>
         </div>
     </footer>
@@ -949,196 +1212,17 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script>
-        // --- NAVEGAÇÃO SPA E MOBILE ---
-        function switchTab(tabId) {
-            const sections = document.querySelectorAll('main > section');
-            sections.forEach(sec => sec.classList.add('hidden'));
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-content">
+            <h3><i class="fas fa-cookie-bite"></i> Controle sua privacidade</h3>
+            <p>Utilizamos cookies para melhorar sua experiência e prover serviços personalizados. Ao continuar, você concorda com nossa <a onclick="switchTab('lgpd')" style="text-decoration: underline; cursor: pointer; color: #4fc3f7;">Política de Privacidade</a>.</p>
+        </div>
+        <div class="cookie-actions">
+            <button onclick="aceitarCookies()" class="btn" style="background: white; color: var(--primary);">Aceitar Todos</button>
+            <button onclick="aceitarCookies()" class="btn btn-outline" style="border-color: white; color: white;">Fechar</button>
+        </div>
+    </div>
 
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => link.classList.remove('active'));
-
-            const target = document.getElementById(tabId);
-            if (target) {
-                target.classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            links.forEach(link => {
-                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(tabId)) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Função Menu Hambúrguer (Mobile)
-        function toggleMenu() {
-            const nav = document.getElementById('navMenu');
-            const btnCta = document.getElementById('mobile-cta-btn');
-            
-            nav.classList.toggle('active');
-            
-            // Controle do botão dentro do menu
-            if(nav.classList.contains('active')) {
-                btnCta.style.display = 'block';
-            } else {
-                btnCta.style.display = 'none';
-            }
-        }
-
-        function fecharMenuMobile() {
-            const nav = document.getElementById('navMenu');
-            if (nav.classList.contains('active')) {
-                nav.classList.remove('active');
-            }
-        }
-
-        // --- WHATSAPP RANDOMICO ---
-        const numerosWhatsApp = [
-            "5548998487359",
-            "5548988792153", 
-            "5548996042645",
-            "5548984449993"
-        ];
-
-        function getRandomNumber() {
-            return numerosWhatsApp[Math.floor(Math.random() * numerosWhatsApp.length)];
-        }
-
-        function abrirWhatsApp(msg) {
-            const numero = getRandomNumber();
-            const link = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
-            window.open(link, '_blank');
-        }
-
-        // --- LÓGICA SIMULADOR CLT ---
-        const valoresTabela = {
-            6: 132.95,
-            9: 181.35,
-            12: 220.39,
-            15: 252.18,
-            18: 278.17,
-            24: 316.85,
-            36: 380.00
-        };
-
-        function formatarMoeda(valor) {
-            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        }
-
-        const cltSalario = document.getElementById("clt-salario");
-        const cltParcelas = document.getElementById("clt-parcelas");
-        const cltParcelaInput = document.getElementById("clt-parcela-input");
-        const cltResultadoBox = document.getElementById("clt-resultado");
-        const resMargem = document.getElementById("res-margem");
-        const resValorTotal = document.getElementById("res-valor-total");
-
-        let margemMaximaGlobal = 0;
-
-        function atualizarSimulacaoCLT() {
-            const bruto = parseFloat(cltSalario.value);
-            
-            if (isNaN(bruto) || bruto <= 0) {
-                cltResultadoBox.style.display = "none";
-                resValorTotal.innerText = "R$ 0,00";
-                return;
-            }
-
-            const margemLivre = bruto * 0.29815;
-            margemMaximaGlobal = margemLivre * 0.70;
-
-            resMargem.innerText = formatarMoeda(margemMaximaGlobal);
-            cltResultadoBox.style.display = "block";
-
-            if (document.activeElement !== cltParcelaInput) {
-                cltParcelaInput.value = margemMaximaGlobal.toFixed(2);
-            }
-
-            calcularValorTotal();
-        }
-
-        function calcularValorTotal() {
-            const parcelas = parseInt(cltParcelas.value);
-            let valorParcela = parseFloat(cltParcelaInput.value);
-
-            if (!parcelas || isNaN(valorParcela) || valorParcela <= 0) {
-                resValorTotal.innerText = "R$ 0,00";
-                return;
-            }
-
-            if (valorParcela > margemMaximaGlobal) {
-                cltParcelaInput.value = margemMaximaGlobal.toFixed(2);
-                valorParcela = margemMaximaGlobal;
-                cltParcelaInput.style.border = "2px solid red";
-                setTimeout(() => {
-                    cltParcelaInput.style.border = "2px solid #eee"; 
-                }, 1000);
-            } else {
-                cltParcelaInput.style.border = "2px solid #eee";
-            }
-
-            if (valoresTabela[parcelas]) {
-                const fator = valoresTabela[parcelas] / 32.09;
-                let valorLiberado = valorParcela * fator;
-                if (valorLiberado < 500) valorLiberado = 500;
-                resValorTotal.innerText = formatarMoeda(valorLiberado);
-            } else {
-                resValorTotal.innerText = "R$ 0,00";
-            }
-        }
-
-        function solicitarCLT() {
-            const bruto = cltSalario.value;
-            const parcelas = cltParcelas.value;
-            const valor = resValorTotal.innerText;
-            
-            if(!bruto || !parcelas) {
-                alert("Por favor, preencha os dados da simulação primeiro.");
-                return;
-            }
-            abrirWhatsApp(`Olá! Fiz uma simulação CLT no site.\nSalário Bruto: R$ ${bruto}\nPrazo: ${parcelas}x\nValor Estimado: ${valor}\nGostaria de prosseguir com a análise.`);
-        }
-
-        // Event Listeners
-        cltSalario.addEventListener("input", atualizarSimulacaoCLT);
-        cltParcelas.addEventListener("change", calcularValorTotal);
-        cltParcelaInput.addEventListener("input", calcularValorTotal);
-        cltParcelaInput.addEventListener("change", calcularValorTotal); 
-        
-        cltSalario.addEventListener("blur", function() {
-            if (this.value) {
-                const val = parseFloat(this.value);
-                if (!isNaN(val)) this.value = val.toFixed(2);
-            }
-        });
-
-        // --- CARROSSEL AUTOMÁTICO INSS ---
-        let slideIndex = 0;
-        function showSlides() {
-            const slides = document.getElementsByClassName("carousel-slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove('active');
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex-1].classList.add('active');
-            setTimeout(showSlides, 4000); 
-        }
-        
-        // --- FAQ TOGGLE ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) otherItem.classList.remove('active');
-                    });
-                    item.classList.toggle('active');
-                });
-            });
-            showSlides();
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
